@@ -3,8 +3,10 @@ const collectionSheet =  require('../models/collectionSheetModel')
 
 module.exports.getCollectionSheet = async (req, res) => {
     try {
-        const {soCode, collectionDay, collectionDate} = req.body
-        const sheet = await collectionSheet.getCollectionSheet(soCode,collectionDay,collectionDate)
+        const {soCode, collectionDay} = req.body
+        console.log(soCode)
+        console.log(collectionDay)
+        const sheet = await collectionSheet.getCollectionSheet(soCode,collectionDay)
         console.log(sheet[0].length)
         if (!sheet) {
             return res.status(404).send('Sheet not found')
@@ -20,32 +22,32 @@ module.exports.getCollectionSheet = async (req, res) => {
         //     }
         // })
         
-        const sonchoy_collection_3 = await db.execute('SELECT * FROM 3_sonchoy_collection')
+        // const sonchoy_collection_3 = await db.execute('SELECT * FROM 3_sonchoy_collection')
 
-        const dateStr = collectionDate;
-        const dateParts = dateStr.split('-');
+        // const dateStr = collectionDate;
+        // const dateParts = dateStr.split('-');
 
-        const year = dateParts[0];
-        const month = dateParts[1];
+        // const year = dateParts[0];
+        // const month = dateParts[1];
 
-        const finalSheet = [];
+        // const finalSheet = [];
         
 
-        sonchoy_collection_3[0].map(item => {
-            const dateString = item.date;
-            const date = new Date(dateString);
+        // sonchoy_collection_3[0].map(item => {
+        //     const dateString = item.date;
+        //     const date = new Date(dateString);
 
-            const sonchoy_year = date.getFullYear();
-            const sonchoy_month = date.getMonth() + 1; 
+        //     const sonchoy_year = date.getFullYear();
+        //     const sonchoy_month = date.getMonth() + 1; 
 
-            sheet[0].map(itemSheet => {
-                if (year == sonchoy_year && month == sonchoy_month) {
-                    finalSheet.push(itemSheet)
-                }
-            })
-        })
+        //     sheet[0].map(itemSheet => {
+        //         if (year == sonchoy_year && month == sonchoy_month) {
+        //             finalSheet.push(itemSheet)
+        //         }
+        //     })
+        // })
           
-        res.json(finalSheet.length)
+        res.json(sheet[0])
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: 'Internal server error' });

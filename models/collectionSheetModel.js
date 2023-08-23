@@ -1,7 +1,7 @@
 const {db} = require('../config/dbConfig')
 
 
-module.exports.getCollectionSheet = (soCode, collectionDay, collectionDate) =>{
+module.exports.getCollectionSheet = (soCode, collectionDay) =>{
 
     try {
         const collectionSheetQuery = `
