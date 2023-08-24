@@ -21,12 +21,16 @@ module.exports.getCollectionSheet = async (req, res) => {
       const sonchoy = await collectionSheet.collectionSheetFilter(
         month,
         year,
-        item.account_no
+        item.serial
       );
+
+      console.log(sonchoy, month, year, item.account_no);
+      
+
 
       if (sonchoy[0]?.length) {
         result_data = result_data.filter(
-          (v) => v.account_no != sonchoy[0][0]?.serial
+          (v) => v.serial != sonchoy[0][0]?.account_no
         );
       }
     });
