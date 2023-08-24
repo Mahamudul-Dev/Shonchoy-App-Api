@@ -20,3 +20,21 @@ module.exports.getCollectionSheet = (soCode, collectionDay) =>{
         throw error
     }
 }
+module.exports.collectionSheetFilter = (month, year, serial) =>{
+
+    try {
+        const collectionSheetQuery = `
+        SELECT serial
+        FROM 3_sonchoy_collection
+        WHERE DATE_FORMAT(date, '%m') = ?
+        AND DATE_FORMAT(date, '%Y') = ?
+        AND serial = ?
+        AND ac_des_id = 1006
+        `;
+
+        return db.execute(collectionSheetQuery, [month, year, serial])
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
