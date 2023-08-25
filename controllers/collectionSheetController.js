@@ -24,7 +24,6 @@ module.exports.getCollectionSheet = async (req, res) => {
           year,
           item.serial
         );
-console.log(sonchoy)
         if (sonchoy[0]?.length) {
           result_data = result_data.filter(
             (v) => v.serial != sonchoy[0][0]?.account_no
