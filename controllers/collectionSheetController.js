@@ -14,24 +14,21 @@ module.exports.getCollectionSheet = async (req, res) => {
 
     let result_data = sheet[0];
     const promises = sheet[0].map(async (item) => {
-      const date = new Date(collectionDate);
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
+      if (item.sonchoy_collection_status == 30) {
+        const date = new Date(collectionDate);
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
 
-      const sonchoy = await collectionSheet.collectionSheetFilter(
-        month,
-        year,
-        item.serial
-      );
-
-      console.log(sonchoy, month, year, item.account_no);
-      
-
-
-      if (sonchoy[0]?.length) {
-        result_data = result_data.filter(
-          (v) => v.serial != sonchoy[0][0]?.account_no
+        const sonchoy = await collectionSheet.collectionSheetFilter(
+          month,
+          year,
+          item.serial
         );
+        if (sonchoy[0]?.length) {
+          result_data = result_data.filter(
+            (v) => v.serial != sonchoy[0][0]?.account_no
+          );
+        }
       }
     });
 
