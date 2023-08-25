@@ -24,11 +24,11 @@ module.exports.collectionSheetFilter = (month, year, serial) =>{
 
     try {
         const collectionSheetQuery = `
-        SELECT serial
+        SELECT account_no
         FROM 3_sonchoy_collection
         WHERE DATE_FORMAT(date, '%m') = ?
         AND DATE_FORMAT(date, '%Y') = ?
-        AND serial = ?
+        AND account_no = ?
         AND ac_des_id = 1006
         `;
 
