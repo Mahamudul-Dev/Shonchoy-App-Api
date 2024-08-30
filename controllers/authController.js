@@ -8,8 +8,10 @@ module.exports.login = async (req, res) => {
     
         // Check if the user exists in the database
         const user = await authModel.getUser(userName, password);
-        if (!user) {
-          return res.status(404).send('User not found');
+        console.log(user[0]);
+        console.log(user[0].length === 0);
+        if (user[0].length === 0 || !user[0]) {
+          return res.status(404).json({ error: "User not found" });
         }
     
         // Passwords match, user is authenticated

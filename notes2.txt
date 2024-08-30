@@ -1,0 +1,29 @@
+If collection form submit & collection_status == 30:
+    Update sv_last_collection_month | kisti_last_collection_month
+
+
+if kisti_collection_status == 30 & kisti != 0 & kisti_last_collection_month == current_month : skip this data
+
+if sonchoy_collection_status == 30 & sonchoy != 0 & sv_last_collection_month == current_month: skip
+
+
+
+----------------------------------------
+
+re check form design
+---------------------
+1. receipt image
+2. online kisti bl                  - 7_sodosso_vorti column
+3. collected kisti amount           - form dr_amount / cr_amount
+4. collected kisti bl               - sum of 2 & 3 field
+5. kisti book bl                    - input field
+
+action:
+
+collected kisto bl == kisti book bl = update 7_sodosso_vorti online_kisti_bl = collected_kisti_bl & kisti_book_bl = kisti_book_bl;
+update gateway_chk from 3_sonchoy_collection_gateway = 2;
+
+
+add re check button in local gateway table.
+
+re_check will come if login user so code != search so code;
